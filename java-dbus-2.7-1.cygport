@@ -1,0 +1,23 @@
+ORIG_PN="dbus-java"
+inherit java
+
+DESCRIPTION="Pure Java implementation of D-Bus protocol"
+HOMEPAGE="http://dbus.freedesktop.org/"
+SRC_URI="http://dbus.freedesktop.org/releases/dbus-java/${ORIG_PN}-${PV}.tar.gz"
+PATCH_URI="2.7-docbook2man.patch"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	export JAVAC # for msgfmt(1)
+	# all: bin doc man
+	# doc: requires htlatex, javadoc-jdk6
+	cygmake -j1 bin man \
+		PREFIX=/usr JAVAUNIXLIBDIR=/usr/bin \
+		JAVAC="${JAVAC} -source 1.5" JAVAH=${JAVAH} JAVADOC=${JAVADOC}
+}
+
+src_install() {
+	cd ${B}
+	cygmake install-bin install-man DESTDIR=${D} PREFIX=/usr DOCPREFIX=/usr/share/doc/${PN}
+}

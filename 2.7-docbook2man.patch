@@ -1,0 +1,77 @@
+Use docbook2man from docbook-utils instead of the ancient docbook-to-man.
+
+--- origsrc/dbus-java-2.7/CreateInterface.sgml	2008-06-07 05:19:11.000000000 -0500
++++ src/dbus-java-2.7/CreateInterface.sgml	2010-02-25 12:41:14.344866800 -0600
+@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
+   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+   <!ENTITY dhemail     "<email>&lt;debian@matthew.ath.cx&gt;</email>">
+   <!ENTITY dhusername  "Matthew Johnson">
+-  <!ENTITY dhucpackage "<refentrytitle>DBUS-JAVA</refentrytitle>">
++  <!ENTITY dhucpackage "<refentrytitle>CreateInterface</refentrytitle>">
+   <!ENTITY dhpackage   "CreateInterface">
+ 
+   <!ENTITY debian      "<productname>Debian</productname>">
+--- origsrc/dbus-java-2.7/DBusCall.sgml	2009-02-20 15:54:41.000000000 -0600
++++ src/dbus-java-2.7/DBusCall.sgml	2010-02-25 12:41:43.617541100 -0600
+@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
+   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+   <!ENTITY dhemail     "<email>&lt;debian@matthew.ath.cx&gt;</email>">
+   <!ENTITY dhusername  "Matthew Johnson">
+-  <!ENTITY dhucpackage "<refentrytitle>DBUS-JAVA</refentrytitle>">
++  <!ENTITY dhucpackage "<refentrytitle>DBusCall</refentrytitle>">
+   <!ENTITY dhpackage   "DBusCall">
+ 
+   <!ENTITY debian      "<productname>Debian</productname>">
+--- origsrc/dbus-java-2.7/DBusDaemon.sgml	2008-06-07 05:19:11.000000000 -0500
++++ src/dbus-java-2.7/DBusDaemon.sgml	2010-02-25 12:41:49.297866000 -0600
+@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
+   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+   <!ENTITY dhemail     "<email>&lt;debian@matthew.ath.cx&gt;</email>">
+   <!ENTITY dhusername  "Matthew Johnson">
+-  <!ENTITY dhucpackage "<refentrytitle>DBUS-JAVA</refentrytitle>">
++  <!ENTITY dhucpackage "<refentrytitle>DBusDaemon</refentrytitle>">
+   <!ENTITY dhpackage   "DBusDaemon">
+ 
+   <!ENTITY debian      "<productname>Debian</productname>">
+--- origsrc/dbus-java-2.7/DBusViewer.sgml	2008-06-07 05:19:11.000000000 -0500
++++ src/dbus-java-2.7/DBusViewer.sgml	2010-02-25 12:41:55.850240700 -0600
+@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
+   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+   <!ENTITY dhemail     "<email>&lt;debian@matthew.ath.cx&gt;</email>">
+   <!ENTITY dhusername  "Matthew Johnson">
+-  <!ENTITY dhucpackage "<refentrytitle>DBUS-JAVA</refentrytitle>">
++  <!ENTITY dhucpackage "<refentrytitle>DBusViewer</refentrytitle>">
+   <!ENTITY dhpackage   "DBusViewer">
+ 
+   <!ENTITY debian      "<productname>Debian</productname>">
+--- origsrc/dbus-java-2.7/ListDBus.sgml	2008-06-07 05:19:11.000000000 -0500
++++ src/dbus-java-2.7/ListDBus.sgml	2010-02-25 12:42:02.538623300 -0600
+@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
+   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
+   <!ENTITY dhemail     "<email>&lt;debian@matthew.ath.cx&gt;</email>">
+   <!ENTITY dhusername  "Matthew Johnson">
+-  <!ENTITY dhucpackage "<refentrytitle>DBUS-JAVA</refentrytitle>">
++  <!ENTITY dhucpackage "<refentrytitle>ListDBus</refentrytitle>">
+   <!ENTITY dhpackage   "ListDBus">
+ 
+   <!ENTITY debian      "<productname>Debian</productname>">
+--- origsrc/dbus-java-2.7/Makefile	2009-11-01 07:53:27.000000000 -0600
++++ src/dbus-java-2.7/Makefile	2010-02-25 12:42:28.251094000 -0600
+@@ -15,7 +15,7 @@ JAVADOC?=javadoc
+ JAR?=jar
+ MAKE?=make
+ MSGFMT?=msgfmt
+-DOCBOOKTOMAN?=docbook-to-man
++DOCBOOKTOMAN?=docbook2man
+ 
+ # Program parameters
+ CPFLAG?=-classpath
+@@ -138,7 +138,7 @@ doc/dbus-java.pdf: doc/dbus-java.dvi .do
+ 	$(JAVADOC) -quiet -author -link http://java.sun.com/j2se/1.5.0/docs/api/ -classpath $(JAVAUNIXJARDIR)/unix.jar:$(JAVAUNIXJARDIR)/hexdump.jar:$(JAVAUNIXJARDIR)/debug-$(DEBUG).jar -d doc/api $(SRCDIR)/*.java $(SRCDIR)/dbus/*.java $(SRCDIR)/dbus/types/*.java $(SRCDIR)/dbus/exceptions/*.java
+ 
+ %.1: %.sgml
+-	$(DOCBOOKTOMAN) $< > $@
++	$(DOCBOOKTOMAN) $<
+ 	
+ bin/%: %.sh .bin
+ 	sed 's,\%JARPATH\%,$(JARPREFIX),;s,\%JAVAUNIXJARPATH\%,$(JAVAUNIXJARDIR),;s,\%JAVAUNIXLIBPATH\%,$(JAVAUNIXLIBDIR),;s,\%VERSION\%,$(VERSION),;s,\%DEBUG\%,$(DEBUG),;s,\%JAVA\%,$(JAVA),' < $< > $@

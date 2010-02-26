@@ -1,0 +1,4 @@
+category: Java
+requires: dbus java-debug java-hexdump java-unix
+sdesc: "Java D-Bus implementation"
+ldesc: "A pure Java implementation of the D-Bus IPC protocol."
